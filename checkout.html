@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Finalizar Compra - Zynkora</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+.checkout {
+    max-width: 500px;
+    margin: 30px auto;
+    background: #140a2e;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.checkout h2 {
+    text-align: center;
+}
+
+.checkout input, .checkout select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: none;
+}
+
+.pix-box {
+    background: #1a0838;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pix-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg, #7a2bff, #00ffcc);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="checkout">
+
+    <h2>Finalizar Compra</h2>
+
+    <!-- RESUMO -->
+    <div id="resumo"></div>
+
+    <h3>Dados do Cliente</h3>
+
+    <input id="nome" placeholder="Nome completo">
+
+    <!-- ESTADO -->
+    <select id="estado">
+        <option value="">Selecione o estado</option>
+        <option>SP</option>
+        <option>RJ</option>
+        <option>MG</option>
+        <option>BA</option>
+        <option>PR</option>
+        <option>RS</option>
+        <option>PE</option>
+        <option>CE</option>
+        <option>PA</option>
+        <option>SC</option>
+        <option>GO</option>
+        <option>MA</option>
+        <option>AM</option>
+        <option>ES</option>
+        <option>PB</option>
+        <option>RN</option>
+        <option>MT</option>
+        <option>AL</option>
+        <option>PI</option>
+        <option>DF</option>
+        <option>MS</option>
+        <option>SE</option>
+        <option>RO</option>
+        <option>TO</option>
+        <option>AC</option>
+        <option>AP</option>
+        <option>RR</option>
+    </select>
+
+    <input id="cidade" placeholder="Cidade">
+    <input id="endereco" placeholder="Endereço completo">
+
+    <!-- PIX -->
+    <div class="pix-box">
+
+        <h3>Pagamento via PIX</h3>
+
+        <p id="pix">800.556.679-45</p>
+
+        <button class="pix-btn" onclick="copiarPix()">Copiar PIX</button>
+
+        <p><strong>Recebedor:</strong><br>
+        Lucas Fernando Kobilarz de Oliveira</p>
+
+    </div>
+
+    <button class="pix-btn" onclick="finalizarPedido()">
+        Já paguei
+    </button>
+
+</div>
+
+<script>
+
+/* 🔥 CARREGAR CARRINHO */
+let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+let total = 0;
+let html = "<h3>Resumo do Pedido</h3>";
+
+carrinho.forEach(p => {
+    total += p.preco;
+    html += `<p>${p.nome} - R$ ${p.preco}</p>`;
+});
+
+html += `<hr><strong>Total: R$ ${total.toFixed(2)}</strong>`;
+
+document.getElementById("resumo").innerHTML = html;
+
+/* COPIAR PIX */
+function copiarPix(){
+    let pix = document.getElementById("pix").innerText;
+    navigator.clipboard.writeText(pix);
+    alert("PIX copiado!");
+}
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+
+emailjs.init("SUA_PUBLIC_KEY"); // 🔥 IMPORTANTE
+
+let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+/* RESUMO */
+let total = 0;
+let html = "<h3>Resumo do Pedido</h3>";
+
+carrinho.forEach(p => {
+    total += p.preco;
+    html += `<p>${p.nome} - R$ ${p.preco}</p>`;
+});
+
+html += `<hr><strong>Total: R$ ${total.toFixed(2)}</strong>`;
+document.getElementById("resumo").innerHTML = html;
+
+/* COPIAR PIX */
+function copiarPix(){
+    let pix = document.getElementById("pix").innerText;
+    navigator.clipboard.writeText(pix);
+    alert("PIX copiado!");
+}
+
+/* 🔥 AQUI VAI SUA FUNÇÃO */
+function finalizarPedido(){
+
+    let nome = document.getElementById("nome").value;
+    let estado = document.getElementById("estado").value;
+    let cidade = document.getElementById("cidade").value;
+    let endereco = document.getElementById("endereco").value;
+
+    if(!nome || !estado || !cidade || !endereco){
+        alert("Preencha todos os campos");
+        return;
+    }
+
+    let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    let total = 0;
+    let pedidoTexto = "";
+
+    carrinho.forEach(p => {
+        total += p.preco;
+        pedidoTexto += `${p.nome} - R$ ${p.preco}\n`;
+    });
+
+    let params = {
+        nome: nome,
+        estado: estado,
+        cidade: cidade,
+        endereco: endereco,
+        pedido: pedidoTexto,
+        total: total.toFixed(2)
+    };
+
+    emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", params)
+    .then(function(){
+        alert("Pedido enviado com sucesso!");
+
+        localStorage.removeItem("carrinho");
+        window.location.href = "index.html";
+    })
+    .catch(function(error){
+        alert("Erro ao enviar pedido");
+        console.log(error);
+    });
+}
+
+</script>
+
+</body>
+</html>

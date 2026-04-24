@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Zynkora Marketplace</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- 🔥 Font Awesome (ícone carrinho) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- 🔥 CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="telaInicial">
+    <div class="box-login">
+        <img src="logo.png">
+        <h3>Bem-vindo ao Zynkora</h3>
+
+        <input id="emailInicial" placeholder="Email">
+        <input id="senhaInicial" placeholder="Senha" type="password">
+
+        <button onclick="loginInicial()">Entrar</button>
+        <button onclick="cadastroInicial()">Cadastrar</button>
+
+        <div id="codigoArea"></div>
+        <input id="codigoInput" placeholder="Código">
+        <button onclick="validarCodigoInicial()">Confirmar Código</button>
+    </div>
+</div>
+
+<header>
+    <div class="logo"><img src="logo.png"></div>
+
+    <div style="display:flex; gap:20px;">
+        <div class="menu">
+            <div class="menu-btn" onclick="toggleMenu()">⋮</div>
+            <div class="dropdown" id="dropdown">
+                <div onclick="modoLoja()">Loja</div>
+                <div id="btnPainel" onclick="modoPainel()" style="display:none;">Painel</div>
+            </div>
+        </div>
+
+        <!-- 🔥 CARRINHO CORRIGIDO -->
+        <div class="carrinho" onclick="abrirCarrinho()">
+            <i class="fa fa-shopping-cart"></i>
+            <span id="qtd">0</span>
+        </div>
+    </div>
+</header>
+
+<div class="container" id="produtos"></div>
+<div class="btn-add" id="btnAdd" onclick="abrirModal()">+</div>
+
+<div id="carrinhoBox" class="carrinho-box"></div>
+<!-- 🔥 MODAL PRODUTO -->
+<div id="modal" class="modal">
+    <div class="modal-box">
+        <div class="fechar" onclick="fecharModal()">✖</div>
+        <h3>Novo Produto</h3>
+
+        <input id="nome" placeholder="Nome"><br><br>
+        <input id="preco" placeholder="Preço"><br><br>
+        <textarea id="descricao" placeholder="Descrição"></textarea><br><br>
+        <input type="file" id="imagensInput" multiple accept="image/*"><br><br>
+
+        <button onclick="salvar()">Salvar</button>
+    </div>
+</div>
+
+<!-- 🔥 JS -->
+<script src="script.js"></script>
+
+</body>
+</html>

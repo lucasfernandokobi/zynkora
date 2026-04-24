@@ -1,0 +1,213 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0b0620;
+    color: white;
+}
+
+.oculto { display: none !important; }
+
+html { scroll-behavior: smooth; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0b0620; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#7a2bff, #00ffcc);
+    border-radius: 10px;
+}
+
+/* LOGIN */
+#telaInicial {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #0b0620, #140a2e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.box-login {
+    background: #140a2e;
+    padding: 30px;
+    border-radius: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.box-login img { width: 140px; margin-bottom: 15px; }
+
+.box-login input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: none;
+}
+
+.box-login button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg, #7a2bff, #00ffcc);
+}
+
+/* HEADER */
+header {
+    padding: 20px 40px;
+    background: linear-gradient(90deg, #1a0838, #5f2bff);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img { height: 70px; }
+
+.menu { position: relative; }
+.menu-btn { font-size: 24px; cursor: pointer; }
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background: #140a2e;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+}
+
+.dropdown div { padding: 10px; cursor: pointer; }
+.dropdown div:hover { background: #2a0d5a; }
+
+/* PRODUTOS */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 100px 20px 20px;
+    min-height: auto;
+}
+
+.produto {
+    background: #140a2e;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+    width: 220px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    /* 🔥 ESSA LINHA RESOLVE */
+    justify-content: flex-start;
+}
+
+.produto h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.produto p {
+    margin: 0;
+    font-size: 13px;
+    color: #ccc;
+}
+
+.produto strong {
+    margin: 5px 0;
+    display: block;
+}
+
+.produto img {
+    width: 100%;
+    height: 200px;          /* 🔥 tamanho fixo */
+    object-fit: cover;      /* 🔥 corta sem distorcer */
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+/* BOTÕES */
+.btn-add {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(90deg, #7a2bff, #00ffcc);
+    border-radius: 50%;
+    font-size: 32px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: black;
+}
+
+/* CARRINHO */
+.carrinho {
+    cursor: pointer;
+}
+
+.carrinho span {
+    background: red;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.carrinho-box {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 320px;
+    height: 100%;
+    background: #140a2e;
+    padding: 20px;
+    display: none;
+    overflow-y: auto;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+/* 🔥 MODAL (ADICIONAR) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.85);
+
+    display: none;
+
+    /* centralização */
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.modal-box {
+    background: #140a2e;
+    padding: 20px;
+    border-radius: 15px;
+    width: 320px;
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    position: relative;
+}
+
+/* botão fechar */
+.fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
