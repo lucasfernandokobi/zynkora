@@ -204,6 +204,61 @@ header {
     position: relative;
 }
 
+@media (max-width: 768px) {
+
+    /* 📱 PRODUTOS */
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        padding: 90px 10px 10px;
+    }
+
+    .produto {
+        width: 100%;
+    }
+
+    .produto img {
+        height: 160px;
+    }
+
+    .produto h3 {
+        font-size: 14px;
+    }
+
+    .produto p {
+        font-size: 12px;
+    }
+
+    /* 📱 HEADER */
+    header {
+        padding: 15px 20px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    /* 📱 CARRINHO */
+    .carrinho-box {
+        width: 100%;
+    }
+
+    /* 📱 MODAL */
+    .modal-box {
+        width: 90%;
+    }
+
+    /* 📱 BOTÃO + */
+    .btn-add {
+        width: 55px;
+        height: 55px;
+        font-size: 26px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+}
+
 /* botão fechar */
 .fechar {
     position: absolute;
