@@ -169,7 +169,10 @@ function carregar(){
     listaProdutos.forEach((p,i)=>{
         produtos.innerHTML += `
         <div class="produto">
-            ${p.imagens ? p.imagens.map(img=>`<img src="${img}">`).join("") : ""}
+            ${p.imagens ? p.imagens.map(img=>`
+    <img src="${img}" onclick="abrirImg('${img}'); event.stopPropagation();" style="cursor:zoom-in;">
+`).join("") : ""}
+
             <h3>${p.nome}</h3>
             <p>${p.descricao}</p>
             <strong>R$ ${p.preco}</strong><br><br>
@@ -341,6 +344,16 @@ function abrirCarrinho(){
 function fecharCarrinho(){
     document.getElementById("carrinhoBox").style.display = "none";
 }
+
+function abrirImg(src){
+    document.getElementById("imgGrande").src = src;
+    document.getElementById("modalImg").style.display = "flex";
+}
+
+function fecharImg(){
+    document.getElementById("modalImg").style.display = "none";
+}
+
 
 window.onload = function(){
 
